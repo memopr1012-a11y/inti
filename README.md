@@ -1,6 +1,8 @@
+# ruleta.py
 import streamlit as st
 import random
 
+# Configuración de la página
 st.set_page_config(page_title="Ruleta de Intimidad (PG-13)", page_icon="🎡")
 
 # Opciones base
@@ -14,16 +16,18 @@ default_items = [
     "Escribir un mini-agradecimiento",
 ]
 
-# Estado
+# Estado de la app
 if "items" not in st.session_state:
     st.session_state.items = default_items.copy()
 
 if "history" not in st.session_state:
     st.session_state.history = []
 
+# Título principal
 st.title("🎡 Ruleta de Intimidad (PG-13)")
+st.caption("Consentimiento y cuidado primero 💚 – Personaliza la ruleta según tus límites.")
 
-# Mostrar opciones
+# Mostrar opciones actuales
 with st.expander("📋 Opciones actuales"):
     for idx, it in enumerate(st.session_state.items, 1):
         st.write(f"{idx}. {it}")
@@ -51,7 +55,7 @@ if st.button("🎲 Girar"):
     else:
         st.error("No hay opciones disponibles")
 
-# Historial
+# Historial de resultados
 if st.session_state.history:
     st.subheader("📜 Historial de resultados")
     for idx, r in enumerate(reversed(st.session_state.history[-10:]), 1):
